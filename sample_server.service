@@ -1,0 +1,20 @@
+[Unit]
+Description=Sample Server
+After=network.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/python3 /app/sample_server.py
+WorkingDirectory=/app/
+Restart=on-failure
+RestartSec=5s
+StartLimitInterval=30s
+StartLimitBurst=3
+User=nobody
+Group=nogroup
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=sample_server
+
+[Install]
+WantedBy=multi-user.target
